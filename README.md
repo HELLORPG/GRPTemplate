@@ -1,2 +1,5 @@
 # GRPTemplate
-使用C++编写的部分模板。
+
+C++ Template By GRP.
+
+# To be continue.
