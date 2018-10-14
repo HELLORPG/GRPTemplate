@@ -1,5 +1,4 @@
 # GRPTemplate
 
-C++ Template By GRP.
-
-# To be continue.
+C++ Template By GRP.<br>
+## To be continue.
