@@ -15,4 +15,12 @@ bool empty();//if the stack is empty, return true;
 void clear();//clear the stack;
 size_t size();//return the stack size;
 ```
+
+## 2.GRPQueue<br>
+```cpp
+class GRPQueue<T>
+```
+```cpp
+
+```
 ### To be continue.
