@@ -16,24 +16,23 @@ template <typename T>
 class GRPQueue;
 
 template <typename T>
-class GRPNode
+class GRPSinNode
 {
 	friend class GRPQueue<T>;
 protected:
 	T data;
-	GRPNode *before;
-	GRPNode *next;
-	GRPNode() = default;
-	GRPNode(T data, GRPNode *before) :data(data), before(before), next(nullptr) {}
-	~GRPNode() {}
+	GRPSinNode *next;
+	GRPSinNode() :data(*(new T)), next(nullptr) {}
+	GRPSinNode(T data) :data(data), next(nullptr) {}
+	~GRPSinNode() {}
 };
 
 template <typename T>
 class GRPQueue
 {
 private:
-	GRPNode<T> *FIRST, *current;
-	size_t stack_size;
+	GRPSinNode<T> *FIRST, *current;
+	size_t queue_size;
 public:
 	GRPQueue();
 	~GRPQueue();
@@ -50,14 +49,14 @@ public:
 template <typename T>
 GRPQueue<T>::GRPQueue()
 {
-	FIRST = current = new GRPNode<T>;
-	stack_size = 0;
+	FIRST = current = new GRPSinNode<T>;
+	queue_size = 0;
 }
 
 template <typename T>
 GRPQueue<T>::~GRPQueue()
 {
-	GRPNode<T> *kill(FIRST);
+	GRPSinNode<T> *kill(FIRST);
 	for (; FIRST != nullptr;)
 	{
 		kill = FIRST;
@@ -69,23 +68,23 @@ GRPQueue<T>::~GRPQueue()
 template <typename T>
 void GRPQueue<T>::push(T input)
 {
-	GRPNode<T> *add = new GRPNode<T>(input, current);
+	GRPSinNode<T> *add = new GRPSinNode<T>(input);
 	current->next = add;
 	current = add;
-	++stack_size;
+	++queue_size;
 	return;
 }
 
 template <typename T>
 size_t GRPQueue<T>::size() const
 {
-	return stack_size;
+	return queue_size;
 }
 
 template <typename T>
 void GRPQueue<T>::show() const
 {
-	GRPNode<T> *p(FIRST->next);
+	GRPSinNode<T> *p(FIRST->next);
 	for (; p != nullptr; p = p->next)
 		cout << p->data << " ";
 	cout << endl;
@@ -103,14 +102,16 @@ void GRPQueue<T>::clear()
 {
 	while (!this->empty())
 		this->pop();
-	stack_size = 0;
+	queue_size = 0;
 	return;
 }
 
 template <typename T>
 T GRPQueue<T>::pop()
 {
-	GRPNode<T> *ret = FIRST->next;
+	GRPSinNode<T> *ret = FIRST->next;
+	if (ret->next == nullptr)
+		current = FIRST;
 	FIRST->next = ret->next;
 	T ret_data(ret->data);
 	delete ret;
