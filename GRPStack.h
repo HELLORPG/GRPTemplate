@@ -207,6 +207,7 @@ void GRPStack<T>::show() const
 	cout << "==========" << endl << "<TOP>" << endl;
 	for (GRPSinNode<T> *p(FIRST->next); p != nullptr; p = p->next)
 		cout << p->data << endl;
+	cout << "==========" << endl;
 	return;
 }
 
