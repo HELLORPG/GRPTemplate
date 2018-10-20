@@ -85,9 +85,10 @@ template <typename T>
 void GRPQueue<T>::show() const
 {
 	GRPSinNode<T> *p(FIRST->next);
+	cout << "==========" << endl << "<FRONT>" << endl;
 	for (; p != nullptr; p = p->next)
-		cout << p->data << " ";
-	cout << endl;
+		cout << p->data << endl;
+	cout << "<BACK>" << endl << "==========" << endl;
 	return;
 }
 
