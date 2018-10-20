@@ -30,4 +30,21 @@ size_t size();//get the size of the queue
 bool empty();//if the queue is empty, return true
 void clear();//clear the queue
 ```
+
+## 3.GRPSinNode<br>
+```cpp
+class GRPSinNode<T>;//single linked list Node
+```
+```cpp
+GRPSinNode<T>(T, *GRPSinNode<T>);//can be invoked by 0/1/2 parameter(s)
+```
+
+## 4.GRPDouNode<br>
+```cpp
+class GRPDouNode<T>;//double linked list Node
+```
+```cpp
+GRPDouNode<T>(T, *GRPDouNode<T>, *GRPDouNode<T>);//can be invoked by 0/1/2/3 parameter(s)
+```
+
 ### To be continue.
